@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    db1:
+      username: dbpool
+      password: ############
+      url: jdbc:mysql://XXXXXX:3306/hugh
+      driverClassName: com.mysql.cj.jdbc.Driver
+      minIdle: 1
+      maximum-pool-size: 2
+    db2:
+      username: dbpool
+      password: ###########
+      url: jdbc:mysql://XXXXX:3306/hugh
+      driverClassName: com.mysql.cj.jdbc.Driver
+      minIdle: 1
+      maximum-pool-size: 2
