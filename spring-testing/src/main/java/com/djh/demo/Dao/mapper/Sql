@@ -1,0 +1,28 @@
+SQL：
+关键字/函数:
+    distinct: 去重--------select distinct 去重字段 from user;
+    between: 在...之间--------select * from user where age between 20 and 30
+    where...in/or/and: 多条件--------在一个范围中/符合其中一个/同时符合
+    like: 模糊匹配--------select * from user where name like‘张_%'（其中 _ 匹配一个字符，%匹配一个或多个）
+    concat：字符串拼接
+    concat ... as：字段拼接后重命名
+    regexp：利用正则表达式筛选
+    limit: 分页查询--------select * from user limit 5; （查询前5个记录行）
+    count: 记录条数--------select count(*) from user (查询user表所有记录条数)
+    sum: 求和--------select sum(age) from user;(查询所有的年龄和)
+    max、min: 最大最小值--------select max(age) from user;(最大的年龄最小同理)
+    avg: 平均值--------select avg(age) from user;(所有人年龄的平均值)
+    group by: 分组--------select sex,count(*) from user group by sex;（分组查询男女总人数）
+    having: 分组后筛选--------其实与where用法相似，having后能用聚合函数where不行，分组筛选后建议用having关键字
+    order by: 排序--------select * from user order by age;(默认从小到大的正序， asc 正序，desc倒序)
+
+
+    left join...on: 以左表为主表，右表没数据为null,会返回右表的所有行
+    right join...on: 以右表为主表，左表中没数据的为null,会返回左表的所有行
+    inner join...on: 内连接是从结果表中删除与其他被连接表中没有匹配行的所有行，所以内连接可能会丢失信息
+    full join 或 full outer join...on: 返回左表和右表中的所有行,当某行在另一个表中没有匹配行时，则另一个表的选择列表列包含空值
+
+    UNION: 用于合并两个或多个 SELECT 语句的结果集,内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。
+           同时，每条 SELECT 语句中的列的顺序必须相同
+    Union：对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；
+    Union All：对两个结果集进行并集操作，包括重复行，不进行排序

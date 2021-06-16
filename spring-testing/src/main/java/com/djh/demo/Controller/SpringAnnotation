@@ -1,0 +1,47 @@
+Spring
+    常用注解:
+    @Component("us"): 默认实例化名为类名的首字母小写，且是单例模式
+    @Scope(value = "prototype"): 改为多例模式(原生模式)
+    作用在类上的几个注解: 实例化对象
+        @Component: 组件，pojo/javaBean
+        @Repository: 数据访问层
+        @Service: 业务层 不写在接口上，写在实现类上
+        @Controller: 控制层
+    依赖关系维护的注解:
+        @Autowired: 默认按byType注入，如果非要按byName注入，在后边加@Qualifier(value = "..")
+                                                            @Qualifier在一个接口有多个实现类的时候使用
+        @Resource: 默认是按byName注入，如果name不存在，按byType注入
+SpringMVC
+    流程:
+        1.DispatcherServlet接收请求
+        2.HandlerMapping映射器(请求的控制器对象)
+        3.HandlerAdapter适配器(方法),完成功能处理
+        4.ModelAndView对象(模型和视图对象)，视图解析器,模型就是数据，视图就是返回的字符串(对应的JSP页面)
+        5.渲染
+        6.DispatcherServlet响应用户
+    常用注解:
+    @Controller: 当前类时控制器类，使用该注解后就不用再实现Controller接口
+    @RequestMapping(""): 请求路径，加在方法上，也可以加在类上
+        RequestMapping中value: value的值是数组，可以将多个url映射到同一个方法value = { "itemList", "itemListAll" }
+                        method: 添加请求方式限制---method=RequestMethod.POST。默认GET/POST都可以
+        方法接受参数推荐使用包装数据类型，因为基础类型不能为null
+        说明: 对于布尔类型的参数，请求的参数值为true或false，或者1或0
+            请求url: http://locahost:8080/xxx.action?id=2&status=false
+    @RequestParam: 请求参数到处理器功能处理方法的方法参数上的绑定
+                    value: 参数名字，即入参的请求参数名字
+                    required: 是否必须，默认是true，表示请求中一定要有相应的参数，否则将报错
+                    defaultValue: 默认值，表示如果请求中没有同名参数时的默认值
+    @ResponseBody:  接收http请求的json数据，将json数据转换为java对象进行绑定/将java对象转换为json格式数据
+    @PathVariable() Integer id : 是获取url上数据的。@RequestParam获取请求参数的（包括post表单提交）,
+                                 如果加上@ResponseBody注解，就不会走视图解析器，不会返回页面，目前返回的json数据。
+                                 如果不加，就走视图解析器，返回页面
+
+    Redirect重定向: Controller方法返回字符串可以重定向到一个url地址  不会携带参数
+                    重定向后浏览器地址栏变更为重定向的地址，
+                    重定向相当于执行了新的request和response，所以之前的请求参数都会丢失
+                    如果要指定请求参数，需要在重定向的url后面添加 ?itemId=1 这样的请求参数
+    forward转发: Controller方法执行后继续执行另一个Controller方法  可以携带参数
+                    修改商品成功后，继续执行另一个方法，
+                    使用转发的方式实现。转发后浏览器地址栏还是原来的请求地址，
+                    转发并没有执行新的request和response，所以之前的请求参数都存在
+    文件上传: from表单添加enctype属性，表单提交方式只能是post类型

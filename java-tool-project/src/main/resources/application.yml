@@ -1,0 +1,6 @@
+#logback日志
+logging:
+  config: classpath:logback-spring.xml
+#  可以指定不同的包使用不同的level
+#  level:
+#    com.djh.demo.Controller: debug

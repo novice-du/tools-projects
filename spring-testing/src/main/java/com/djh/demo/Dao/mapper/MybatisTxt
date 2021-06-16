@@ -1,0 +1,78 @@
+Mybatis:
+    属性介绍
+    typeAliases：配置po/bean的别名
+    别名的使用:sql语句resultType=”” 可以使用对象的别名，存在的意义仅在于用来减少类完全限定名的冗余
+        <typeAliases>
+            <typeAlias type="com.yh.po.User" alias="User"/>
+        </typeAliases>
+
+    myBaits事务默认为手动提交(显示)
+        insert，update,delete,需要操作事务 select不需要操作事务
+        Session.commit()
+
+    当我们需要通过xml格式处理sql语句时，经常会用到< ，<=，>，>=等符号，但是很容易引起xml格式的错误，
+    这样会导致后台将xml字符串转换为xml文档时报错，从而导致程序错误，可以进行如下替换:
+        原符号	   <	   <=	   >	   >=	    &	    '	     "
+        替换符号	&lt;	&lt;=	&gt;	&gt;=	&amp;	&apos;	&quot;
+
+    sql语句中的动态传递参数#{}和${}的区别:
+        #{}:                                            ${}:
+          1. #{} 为参数占位符 ?，即sql 预编译            1. ${} 为字符串替换，即 sql 拼接
+          2. 动态解析 -> 预编译 -> 执行                  2. 动态解析 -> 编译 -> 执行
+          3. #{} 的变量替换是在DBMS 中                   3. ${} 的变量替换是在 DBMS 外
+          4. 变量替换后，#{} 对应的变量自动加上单引号 '' 4. 变量替换后，${} 对应的变量不会加上单引号 ''
+          5. #{} 能防止sql 注入                          5. ${} 不能防止sql 注入
+          6.优先使用                                     6. $方式一般用于传入数据库对象，例如传入表名
+
+    MyBaits动态sql:  <sql>标签：用于声明公有的SQL语句块，在操作标签中使用<include>调用
+                     <sql>标签：用于声明公有的SQL语句块，在操作标签中使用<include>调用
+                     <if>标签：类似java的if(){}，用于判断
+                     <foreach>标签：类似java的foreach循环，一般用户批量处理的SQL语句
+                     <trim>标签：切割标签，主要用于切割关键字的头和尾的字符
+                     <set>标签：可以在update的时候set 关键字后面的，sql语句最后的逗号可以自动忽略
+                     <where>：where后面的条件都不成立,忽略where关键字.
+                     <choose> <when> <otherwise> : 类似java的switch case选择语句
+        if
+        <if test="empName!=null">            第一个if条件and可以有，可以没有，其他if必须添加and
+         ename like #{empName}               动态sql if标签判断条件 test:
+        </if>                                如果对象属性是String，Date, test=”属性名!=null”
+        <if test="sal!=0.0">                 如果对象属性是int，test=”属性名!=0”
+          and sal=#{sal}                     如果对象属性是double,float,test=”属性名!=0.0”
+        </if>
+        <if test="hireDate!=null">
+         and hireDate=#{hireDate}
+        </if>
+
+        Choose ，when，Otherwise
+        <!-- 连接条件只支持and 或 or -->
+        <choose>
+        <when test="startDate!=null and endDate==null">
+         and hireDate &gt;=#{startDate}
+        </when>
+        <when test="startDate==null and endDate!=null">
+         and hireDate &lt;=#{endDate}
+        </when>
+        <when test="startDate!=null and endDate!=null">
+         and hireDate between #{startDate} and #{endDate}
+        </when>
+        <otherwise>
+        </otherwise>
+        </choose>
+
+        forEach: <select parameterType=”Map” >  <!--jobList Map参数的key -->
+        <if test="jobList!=null">
+        and JOB IN
+        <!-- collection 只能是List，或Array-->
+        <foreach collection="jobList" item="job" index="index" open="(" separator="," close=")">
+        #{job}
+        </foreach>
+        </if>
+    Mybatis一级缓存二级缓存:
+        一级缓存:  Mybatis对缓存提供支持，但是在没有配置的默认情况下，它只开启一级缓存，一级缓存只是相对于
+                   同一个SqlSession而言。所以在参数和SQL完全一样的情况下，我们使用同一个SqlSession对象调用一个Mapper方法，
+                   往往只执行一次SQL，因为使用SelSession第一次查询后，MyBatis会将其放在缓存中，以后再查询的时候，
+                   如果没有声明需要刷新，并且缓存没有超时的情况下，SqlSession都会取出当前缓存的数据，而不会再次发送SQL到数据库
+        二级缓存:  MyBatis的二级缓存是Application级别的缓存，它可以提高对数据库查询的效率，以提高应用的性能。
+                   实现二级缓存的时候，MyBatis要求返回的POJO必须是可序列化的。 也就是要求实现Serializable接口。
+                   二级缓存是指mapper映射文件。二级缓存的作用域是同一个namespace下的mapper映射文件内容，多个SqlSession共享。
+                   Mybatis需要手动设置启动二级缓存

@@ -1,0 +1,26 @@
+ @GET : 用于读取、列出、检索单个或者资源集合
+ @POST : 用于新建资源
+ @PUT : 用于更新资源
+ @DELETE : 用于删除资源
+ @Consumes ：可以使用在方法或者类上，表示请求参数的格式，如：
+             @Consumes(MediaType.APPLICATION_JSON) 表示JSON数据
+             @Consumes(MediaType.APPLICATION_FORM_URLENCODED) 表示表单数据
+             @Consumes(MediaType.APPLICATION_XML) 表示XML数据
+ @Produces : 和Consumes注解相对应，同样使用在方法或者类上，用于表示响应数据的类型
+
+参数封装方式:
+  @PathParam : PathParam 可以用于获取URI中根据Restful规则设定的参数  http://localhost/student/get/1 ,id的值是1
+  @QueryParam : QueryParam 注解用于获取GET请求中的查询参数  http://localhost/student/get?id=1时，id的值为1,
+                  可以在程序中指定默认值，使用@DefaultValue注解
+  @FormParam : FormParam 就是Post请求中，通过表单提交传递的参数，服务端使用@FormParam解析form表单中的参数
+  @BeanParam : BeanParam的作用就是将参数封装到Bean对象，在Jersey框架中如果传递的参数是Json格式，会自动将数据封装到Bean对象中，
+              但如果是POST、PUT、GET请求的参数封装到Bean对象中时，就需要使用到BeanParam注解
+  @Context ：因为传递参数形式的多变性，参数可能比我们上面介绍的形式更为复杂，这时可以使用Context注解，来获取更加复杂的数据
+             还可以通过 @Context 注释获取 ServletConfig 、 ServletContext 、 HttpServletRequest 、 HttpServletResponse 和 HttpHeaders 等
+             用来注入，和Spring的@AutoWired效果类似。按照业务需要选择性注入
+  @MatrixParam : 获取请求URL中的参数中的键值对，必须使用“;”作为键值对的分隔符，比如/person/1;id=1;name=bella;age=22。
+                 除此之外呢，@MatrixParam可以接受List参数，尤其是在键值对key相同的时候，就会被解析为List
+  @HeaderParam : 获取http请求头中的参数值
+  @CookieParam : 获取http请求头中cookie中的参数值
+
+  @Encoded : 禁止解码，客户端发送的参数是什么样，服务器接收到的参数就是什么样

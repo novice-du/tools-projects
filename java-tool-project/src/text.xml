@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <beans>
+        <bean id="personId" name="com.djh.demo.XMLDemo.Entity.Person">
+        </bean>
+    </beans>
+
+</configuration>

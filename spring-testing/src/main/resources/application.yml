@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.0.107:3306/mydatabases?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+
+#Mybatis相关配置，mapperLocations  指的路径是src/main/resources
+mybatis:
+  mapper-locations: classpath:com/djh/demo/Dao/mapper/*.xml
+  type-aliases-package: com.djh.demo.Entity
+
+#logback日志
+logging:
+  config: classpath:logback-spring.xml
+#  可以指定不同的包使用不同的level
+#  level:
+#    com.djh.demo.Controller: debug
+
