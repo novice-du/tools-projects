@@ -1,16 +1,13 @@
-package com.djh.apipassenger;
+package com.djh.toolsprojectsnew;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.UUID;
-
 @SpringBootApplication
-public class ApiPassengerApplication {
+public class ToolsProjectsNewApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiPassengerApplication.class, args);
+        SpringApplication.run(ToolsProjectsNewApplication.class, args);
     }
 
 }
-
