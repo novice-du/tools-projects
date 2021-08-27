@@ -7,7 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60e3eaba-4735-42c5-a3fd-cb71a73fcfcb" name="Default Changelist" comment="" />
+    <list default="true" id="60e3eaba-4735-42c5-a3fd-cb71a73fcfcb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../online-driver/源码/online-taxi-three/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../online-driver/源码/online-taxi-three/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -157,7 +160,7 @@
       <workItem from="1629992921425" duration="4449000" />
       <workItem from="1629997413534" duration="3210000" />
       <workItem from="1630038596025" duration="991000" />
-      <workItem from="1630041899151" duration="5496000" />
+      <workItem from="1630041899151" duration="6246000" />
     </task>
     <servers />
   </component>
