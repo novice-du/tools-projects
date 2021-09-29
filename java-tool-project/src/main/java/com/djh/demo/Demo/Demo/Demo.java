@@ -3,8 +3,7 @@ package com.djh.demo.Demo.Demo;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 /**
  * @Author: dujunhua
@@ -48,4 +47,5 @@ public class Demo {
             System.out.println("这是昨天的时间"+format2);
         }
     }
+
 }
