@@ -1,4 +1,4 @@
-package com.djh.excel.ftpFile;
+package com.djh.ftpFile;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;

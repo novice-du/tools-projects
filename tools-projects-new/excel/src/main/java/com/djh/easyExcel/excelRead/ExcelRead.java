@@ -1,7 +1,7 @@
-package com.djh.excel.easyExcel.excelRead;
+package com.djh.easyExcel.excelRead;
 
 import com.alibaba.excel.EasyExcel;
-import com.djh.excel.easyExcel.DemoData;
+import com.djh.easyExcel.DemoData;
 
 /**
  * @author: dujunhua

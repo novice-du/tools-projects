@@ -1,33 +1,35 @@
-package com.djh.excel.excel07;
+package com.djh.excel03;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.DateTime;
 
 import java.io.FileOutputStream;
 
 /**
  * @author: dujunhua
- * @create: 2021/08/27 0:25
- * @description: Excel07版本写入  速度慢，但是没有行数限制
+ * @create: 2021/08/26 23:51
+ * @description: Excel03版本写入  速度快  但是有行数限制，最大65536行
  */
+
 public class ExcelWrite {
+
     public static final String PATH = "D:\\";
 
     public static void main(String[] args) throws Exception {
         try {
-            write();
+             write();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void write() throws Exception {
-        //1.创建一个工作簿  用XSSFWorkbook
-        Workbook workbook = new XSSFWorkbook();
+        //1.创建一个工作簿  用HSSFWorkbook
+        Workbook workbook = new HSSFWorkbook();
         //2.创建一个工作表
         Sheet sheet = workbook.createSheet("摇摆Sheet页1");
         //3.创建一行（1.1）
@@ -48,7 +50,7 @@ public class ExcelWrite {
         cell22.setCellValue("第二行第二格"+str);
 
         //生成一张表（IO流）
-        FileOutputStream outputStream = new FileOutputStream(PATH + "第一张表07.xlsx");
+        FileOutputStream outputStream = new FileOutputStream(PATH + "第一张表03.xls");
         workbook.write(outputStream);
         outputStream.close();
     }

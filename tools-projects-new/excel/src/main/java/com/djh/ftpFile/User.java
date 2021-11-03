@@ -1,4 +1,4 @@
-package com.djh.excel.ftpFile;
+package com.djh.ftpFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

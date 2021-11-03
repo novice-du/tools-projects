@@ -1,8 +1,8 @@
-package com.djh.excel.easyExcel.excelWrite;
+package com.djh.easyExcel.excelWrite;
 import java.util.Date;
 
 import com.alibaba.excel.EasyExcel;
-import com.djh.excel.easyExcel.DemoData;
+import com.djh.easyExcel.DemoData;
 
 import java.util.ArrayList;
 import java.util.List;

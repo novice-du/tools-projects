@@ -1,4 +1,4 @@
-package com.djh.excel.ftpFile;
+package com.djh.ftpFile;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
