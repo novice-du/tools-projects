@@ -49,9 +49,9 @@ public class ExcelWritePro {
         outputStream.close();
 
         //清除缓存文件
-        ((SXSSFWorkbook)workbook).dispose();
+        ((SXSSFWorkbook) workbook).dispose();
         long end = System.currentTimeMillis();
-        System.out.println((double) (end-begin)/ 1000);
+        System.out.println((double) (end - begin) / 1000);
 
     }
 }
