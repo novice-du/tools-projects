@@ -14,10 +14,10 @@ public class ExcelRead {
         simpleRead();
     }
 
-    public static void simpleRead(){
+    public static void simpleRead() {
         String fileName = "D:\\EasyExcel.xls";
         //指定用哪个class去读，然后取第一个sheet页，文件流会自动关闭
         //DemoDataListener不能被spring管理，需要每次读的时候new,然后里面用到spring可以构造方法传进去
-        EasyExcel.read(fileName, DemoData.class,new DemoDataListener()).sheet().doRead();
+        EasyExcel.read(fileName, DemoData.class, new DemoDataListener()).sheet().doRead();
     }
 }

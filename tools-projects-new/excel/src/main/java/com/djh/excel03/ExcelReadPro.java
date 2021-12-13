@@ -51,37 +51,37 @@ public class ExcelReadPro {
 
                     Cell cell = rowData.getCell(cellNum);
                     //匹配列的数据类型
-                    if (cell!=null) {
+                    if (cell != null) {
                         int cellType = cell.getCellType();
                         String cellValue = "";
-                        switch (cellType){
+                        switch (cellType) {
                             case HSSFCell
                                     .CELL_TYPE_STRING://字符串
-                                    System.out.println(cell.getStringCellValue());
-                                    break;
+                                System.out.println(cell.getStringCellValue());
+                                break;
                             case HSSFCell
                                     .CELL_TYPE_BOOLEAN://布尔
-                                    System.out.println(String.valueOf(cell.getBooleanCellValue()));
-                                    break;
+                                System.out.println(String.valueOf(cell.getBooleanCellValue()));
+                                break;
                             case HSSFCell
                                     .CELL_TYPE_BLANK://空
-                                    break;
+                                break;
                             case HSSFCell
                                     .CELL_TYPE_NUMERIC://数字
-                                    //判断是否是日期
-                                    if (HSSFDateUtil.isCellDateFormatted(cell)){
-                                        Date date = cell.getDateCellValue();
-                                        cellValue = new DateTime(date).toString("yyyy-MM-dd HH:mm:ss");
-                                    }else {
-                                        //不是日期格式的话，防止数字过长，转换为字符串
-                                        cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-                                        cellValue = cell.toString();
-                                    }
-                                    break;
+                                //判断是否是日期
+                                if (HSSFDateUtil.isCellDateFormatted(cell)) {
+                                    Date date = cell.getDateCellValue();
+                                    cellValue = new DateTime(date).toString("yyyy-MM-dd HH:mm:ss");
+                                } else {
+                                    //不是日期格式的话，防止数字过长，转换为字符串
+                                    cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                                    cellValue = cell.toString();
+                                }
+                                break;
                             case HSSFCell
                                     .CELL_TYPE_ERROR://类型错误
-                                    System.out.println("数据类型错误");
-                                    break;
+                                System.out.println("数据类型错误");
+                                break;
                         }
                         System.out.println(cellValue);
                     }

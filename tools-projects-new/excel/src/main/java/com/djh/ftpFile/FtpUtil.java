@@ -30,7 +30,7 @@ public class FtpUtil {
      * 如果需要持久化数据，注入静态dao
      */
     @PostConstruct
-    public void init(){
+    public void init() {
         userMapper = autoBaseMapper;
         ftpUtil = this;
     }
@@ -59,28 +59,28 @@ public class FtpUtil {
             String suffix = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
             //ftp设置的是utc时间,和系统时间有8小时时差,所以需要加上时差
 //            Long lastModifiedTime = ftpFile.getTimestamp().getTimeInMillis() + ftpFile.getTimestamp().getTimeZone().getOffset(0);
-            System.out.println("读取到文件："+fileName);
+            System.out.println("读取到文件：" + fileName);
             //根据文件后缀判断是哪个文件
             switch (suffix) {
                 case ".txt":
-                        InputStream is = ftpClient.retrieveFileStream(ftpFile.getName());
-                        BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
-                        String content = "";
-                        //一次读入一行数据
-                        while ((content = br.readLine()) != null){
-                            System.out.println("content = " + content);
-                        }
-                        br.close();
-                        is.close();
-                        //结束事务(有流返回时需手动调用,否则会报输入流为空)
-                        ftpClient.completePendingCommand();
-                        break;
+                    InputStream is = ftpClient.retrieveFileStream(ftpFile.getName());
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                    String content = "";
+                    //一次读入一行数据
+                    while ((content = br.readLine()) != null) {
+                        System.out.println("content = " + content);
+                    }
+                    br.close();
+                    is.close();
+                    //结束事务(有流返回时需手动调用,否则会报输入流为空)
+                    ftpClient.completePendingCommand();
+                    break;
                 case ".jpg":
                     //转换文件类型
-                    FileInputStream fileInputStream  = new FileInputStream("D:\\ftp\\LocalUser\\rxnb\\"+fileName);
+                    FileInputStream fileInputStream = new FileInputStream("D:\\ftp\\LocalUser\\rxnb\\" + fileName);
                     MultipartFile multipartFile = new MockMultipartFile(fileName, fileName,
                             ContentType.APPLICATION_OCTET_STREAM.toString(), fileInputStream);
-                    insertRar(multipartFile,fileName);
+                    insertRar(multipartFile, fileName);
                     break;
             }
 
@@ -89,12 +89,13 @@ public class FtpUtil {
 
     /**
      * 连接FTP
+     *
      * @param hostname 服务器地址
-     * @param port 端口号(默认为21)
+     * @param port     端口号(默认为21)
      * @param username 帐号
      * @param password 密码
      */
-    public static FTPClient connectFtp(String hostname, int port, String username, String password){
+    public static FTPClient connectFtp(String hostname, int port, String username, String password) {
         FTPClient ftp = new FTPClient();
         try {
             //连接FTP服务器
@@ -102,7 +103,7 @@ public class FtpUtil {
             boolean login = ftp.login(username, password);
             if (login) {
                 System.out.println(">>>>>>>>FTP-->登录成功>>>>>>>>>>>>>");
-            }else {
+            } else {
                 System.out.println(">>>>>>>>FTP-->登录失败>>>>>>>>>>>>>");
             }
         } catch (SocketException e) {
@@ -115,10 +116,11 @@ public class FtpUtil {
 
     /**
      * 保存图片
+     *
      * @param file
      * @param filename
      */
-    public static void insertRar(MultipartFile file,String filename) {
+    public static void insertRar(MultipartFile file, String filename) {
         String dirPath = "D:/photo/";
         try {
             // 文件路径

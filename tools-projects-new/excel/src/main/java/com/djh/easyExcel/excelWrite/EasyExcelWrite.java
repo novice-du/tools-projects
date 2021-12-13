@@ -1,4 +1,5 @@
 package com.djh.easyExcel.excelWrite;
+
 import java.util.Date;
 
 import com.alibaba.excel.EasyExcel;
@@ -18,11 +19,11 @@ public class EasyExcelWrite {
         simpleWrite();
     }
 
-    public static List<DemoData> test(){
+    public static List<DemoData> test() {
         List<DemoData> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             DemoData data = new DemoData();
-            data.setString("字符串"+i);
+            data.setString("字符串" + i);
             data.setDate(new Date());
             data.setDoubleData(0.56D);
             list.add(data);
@@ -33,7 +34,7 @@ public class EasyExcelWrite {
     /**
      * 根据list 写入excel
      */
-    public static void simpleWrite(){
+    public static void simpleWrite() {
         //写法一
         String fileName = "D:\\EasyExcel.xls";
         //指定用哪个实体类去写，sheet页名，文件流会自动关闭

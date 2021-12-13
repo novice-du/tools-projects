@@ -21,7 +21,7 @@ public class ExcelWrite {
 
     public static void main(String[] args) throws Exception {
         try {
-             write();
+            write();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class ExcelWrite {
         cell21.setCellValue("第二行第一格");
         Cell cell22 = row2.createCell(1);
         String str = new DateTime().toString("yyyy-MM-dd HH:mm:ss");
-        cell22.setCellValue("第二行第二格"+str);
+        cell22.setCellValue("第二行第二格" + str);
 
         //生成一张表（IO流）
         FileOutputStream outputStream = new FileOutputStream(PATH + "第一张表03.xls");
